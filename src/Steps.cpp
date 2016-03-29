@@ -22,9 +22,26 @@
 
 */
 #include "stdafx.h"
-
+int ans(int);
 
 int get_steps(int s)
 {
-	return 0;
+	int r;
+	r = ans(s);
+	return r;
+}
+int ans(int a)
+{
+	if (a <= 1)
+	{
+		return 1;
+	}
+	else if (a == 2)
+	{
+		return 2;
+	}
+	else
+	{
+		return ans(a - 1) + ans(a - 2);
+	}
 }
