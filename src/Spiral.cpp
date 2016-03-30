@@ -33,31 +33,32 @@ Note : Check the function Parameters ,Its a double pointer .
 
 #include "stdafx.h"
 #include<stdlib.h>
-//int *spiraal(int, int, int**, int*,int,int);
+int *spiraal(int, int, int**, int*,int,int,int);
 int *spiral(int rows, int columns, int **input_array)
 {
 	
-	/*if ((rows > 0) && (columns > 0) && (input_array != NULL))
+	if ((rows > 0) && (columns > 0) && (input_array != NULL))
 	{
-		int *arr;
-		arr = (int*)malloc(sizeof(int)*(rows*columns));
-		spiraal(rows, columns, input_array,arr,0,0);
+		int *arr , val, k = 0;
+		arr = (int*)malloc(sizeof(int)*((rows+1)*(columns+1)));
+		if (rows < columns)
+		{
+			val = (rows / 2) + (rows % 2);
+		}
+		else if ((rows == columns) || (rows > columns))
+		{
+			val = ((columns / 2) + (columns % 2));
+		}
+		spiraal(rows, columns, input_array,arr,k,0,val);
 		return arr;
-	}*/
+	}
 	
 	return NULL;
 }
 
-/*int *spiraal(int rows, int columns, int** input_array, int* arr, int k,int a)
+int *spiraal(int rows, int columns, int** input_array, int* arr, int k,int a,int val)
 {
-	int val, i, j;
-	if (rows < columns)
-	{
-		val = (rows / 2) + (rows % 2);
-	}
-	else val = (columns / 2) + (columns % 2);
-	if (k < val)
-	{
+	int i, j;
 		for (i = k; i < columns -  k; i++)
 		{
 			arr[a++] = input_array[k][i];
@@ -66,24 +67,23 @@ int *spiral(int rows, int columns, int **input_array)
 		{
 			arr[a++] = input_array[i][j];
 		}
-		for (i = columns-1-k, j = rows - 1 - k; i>=k; i++)
+		for (i = columns-1-k, j = rows - 1 - k; i>=k; i--)
 		{
 			arr[a++] = input_array[j][i];
 		}
 
-		for ( i = rows - 2 - k; i >k; i++)
+		for ( i = rows - 2 - k; i >k; i--)
 		{
 			arr[a++] = input_array[i][k];
 		}
 
-	}
-	else if(k==val)
-		return arr;
-
-	return spiraal(rows, columns, input_array, arr, k+1, a);
 	
+	 if (k<val-1)
+	return spiraal(rows, columns, input_array, arr, k+1, a,val);
+	else 
+		return arr;
 }
-*/
+
 
 
 
